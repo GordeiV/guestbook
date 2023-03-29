@@ -3,7 +3,9 @@
 
 name: Build and deploy JAR app to Azure Web App - WebAppTestMiv
 
-on: release
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
