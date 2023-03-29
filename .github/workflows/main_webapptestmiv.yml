@@ -3,11 +3,7 @@
 
 name: Build and deploy JAR app to Azure Web App - WebAppTestMiv
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: release
 
 jobs:
   build:
