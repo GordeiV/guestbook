@@ -20,13 +20,15 @@ jobs:
           GITHUB_VAR: ${{ toJson(github) }}
         run: echo "$GITHUB_VAR"
     
-      - name: Exit if not on master branch
-        if: endsWith(github.ref, 'master') == false
-        run: | 
-          echo "$GITHUB_VAR"
-          exit -1
-    
-      - uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          ref: ref/tags/${{ inputs.version }}
+      
+      - name: Dump job github var
+        env:
+          GITHUB_VAR: ${{ toJson(github) }}
+        run: echo "$GITHUB_VAR"
 
       - name: Set up Java version
         uses: actions/setup-java@v1
