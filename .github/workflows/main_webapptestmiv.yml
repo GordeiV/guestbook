@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Dump job github var
+        env:
+          GITHUB_VAR: ${{ toJson(github) }}
+        run: echo "$GITHUB_VAR"
+    
       - name: Exit if not on master branch
         if: endsWith(github.ref, 'master') == false
         run: | 
