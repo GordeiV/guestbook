@@ -23,7 +23,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
         with:
-          ref: ref/tags/${{ inputs.version }}
+          ref: tags/${{ inputs.version }}
       
       - name: Dump job github var
         env:
