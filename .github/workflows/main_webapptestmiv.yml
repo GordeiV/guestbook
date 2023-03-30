@@ -19,11 +19,11 @@ jobs:
         env:
           GITHUB_VAR: ${{ toJson(github) }}
         run: echo "$GITHUB_VAR"
-    
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+      
+      - uses: actions/checkout@v3
         with:
-          ref: tags/${{ inputs.version }}
+          ref: branch-with-tag
+
       
       - name: Dump job github var
         env:
