@@ -1,0 +1,27 @@
+name: 'Set Up node and cache node modules'
+description: 'Greet someone'
+inputs:
+  node_version:  # id of input
+    description: 'Node version'
+    default: '18.x'
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node.js version
+      uses: actions/setup-node@v3
+      with:
+        node-version: '${{ github.event.inputs.release_version }}'
+
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-   
